@@ -1,12 +1,18 @@
 export default class Team {
-  constructor(object) {
-    Object.assign(this, object);
+  constructor() {
+      this.members = new Set();
   }
 
-  *[Symbol.iterator]() {
-    const values = Object.values(this);
-    for (const value of values) {
-      yield value;
-    }
+  add(...heros) {
+      this.members = new Set([...this.members, ...heros]);
   }
+
+  get() {
+      return Array.from(this.members);
+  }
+
+  * [Symbol.iterator]() {
+      yield* this.get();
+  }
+
 }
