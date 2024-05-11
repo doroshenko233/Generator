@@ -4,7 +4,7 @@ export default class Team {
   }
 
   add(...heros) {
-      this.members = new Set([...this.members, ...heros]);
+      heros.forEach(hero => this.members.add(hero));
   }
 
   get() {
@@ -12,7 +12,9 @@ export default class Team {
   }
 
   * [Symbol.iterator]() {
-      yield* this.get();
-  }
-
+      for (const hero of this.members) {
+        yield hero;
+        console.log(hero)
+      }
+    }
 }
